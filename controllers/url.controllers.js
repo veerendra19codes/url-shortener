@@ -1,8 +1,5 @@
-// import shortid from "shortid";
 const shortid = require("shortid");
-// import URL from "../models/url.models.js";
 const URL = require("../models/url.models.js");
-
 
 async function handleGenerateNewShortURL (req, res, next) {
     const body = req.body;
@@ -13,9 +10,9 @@ async function handleGenerateNewShortURL (req, res, next) {
         shortId: shortID,
         redirectURL: body.url,
         visitHistory: [],
+        createdBy: req.user._id,
     })
 
-    
     return res.render("home", {
       id: shortID
     })
