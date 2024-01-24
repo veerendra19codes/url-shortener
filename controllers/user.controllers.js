@@ -30,10 +30,16 @@ async function handleUserLogin (req, res) {
         error: "email or password is wrong"
     });
     
-    const sessionId = uuidv4();
-    setUser(sessionId, user);
-    res.cookie("uid", sessionId);
-    return res.redirect('/');
+    //statefull
+    // const sessionId = uuidv4();
+    // setUser(sessionId, user);
+    // res.cookie("uid", sessionId);
+    // return res.redirect('/');
+
+    //stateless
+    const token = setUser(user);
+    res.cookie("uid", token);
+    return res.redirect("/");
 }
 
 module.exports = { handleUserSignup, handleUserLogin };
